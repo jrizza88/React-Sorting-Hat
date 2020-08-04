@@ -20,10 +20,13 @@ class App extends React.Component{
   addName = e => {
     e.preventDefault();
   
-    const hogwartsInfo = this.state.hogwartsInfo.slice();
-    hogwartsInfo.push({nameOfStudent: this.state.studentList, id: 1})
+    const hogwartsInfo = this.state.hogwartsInfo.splice();
+    hogwartsInfo.push({nameOfStudent: this.state.studentList, id: Date.now()})
     this.setState({hogwartsInfo, studentList: []})
     
+    // if (this.state.studentList.length === 1) {
+
+    // }
 
     console.log('name....', this.state.nameOfStudent)
     console.log('hogwarts name....', this.state.hogwartsInfo)
@@ -36,17 +39,10 @@ class App extends React.Component{
   handleChangeState = e => this.setState({ [e.target.name]: e.target.value });
 
   render(){
-   if (this.state.studentList === '1' ) { 
+   if (this.state.hogwartsInfo[0].id) { 
+     console.log('Checking Id', this.state.hogwartsInfo[0].id)
      return (
        <div>
-         <NameForm 
-      handlePropSubmit={this.addName} 
-      handleChangeProp={this.handleChangeState} 
-      value={this.state.studentList}
-      
-      />
- 
-      <h3>Your Hogwarts name is: {this.state.studentList}</h3>
         <WelcomeList 
         nameProp={this.state.hogwartsInfo} 
         /> 
@@ -65,7 +61,7 @@ class App extends React.Component{
       </div>
        )
        
-     }
+    }
     
   // return (
   //   <div className="App">
@@ -78,12 +74,12 @@ class App extends React.Component{
  
   //     <h3>Your Hogwarts name is: {this.state.studentList}</h3>
 
-  //     {/* <WelcomeList 
+  //     <WelcomeList 
   //     nameProp={this.state.hogwartsInfo} 
-  //     /> */}
+  //     />
   //   </div>
   // );
-  }
+   }
 }
 
 export default App;
