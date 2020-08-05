@@ -1,6 +1,10 @@
 import React from 'react';
-import WelcomeList from './components/WelcomeList';
-import NameForm from  "./components/Name";
+import WelcomeList from './components/Welcome/WelcomeList';
+import NameForm from  "./components/Welcome/NameForm";
+import Question from './components/Questions/Question';
+import QuestionCount from "./components/Questions/QuestionCount";
+import AnswerOption from "./components/Answers/AnswerOption";
+
 import './App.css';
 
 class App extends React.Component{
@@ -13,7 +17,12 @@ class App extends React.Component{
         id: ''
         }
       ],
-      studentList: []
+      studentList: [],
+      hogwartsQuiz: {
+        counter: 0,
+        questionId: 1,
+        question: ''
+      }
     }
   }
 
@@ -43,13 +52,16 @@ class App extends React.Component{
      console.log('Checking Id', this.state.hogwartsInfo[0].id)
      return (
        <div>
+         <h1>Sorting Hat Quiz</h1>
         <WelcomeList 
         nameProp={this.state.hogwartsInfo} 
         /> 
+        <Question content="Out of the colors listed, which color is your most preferred?" />
       </div>
      ) } else {
        return (
          <div>
+      <h1>Welcome to the sorting hat Quiz. Find out which house you belong in today. But first, please enter your name.</h1>
         <NameForm 
       handlePropSubmit={this.addName} 
       handleChangeProp={this.handleChangeState} 

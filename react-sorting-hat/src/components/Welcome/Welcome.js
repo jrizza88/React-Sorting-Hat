@@ -4,7 +4,7 @@ import React from 'react';
 const Welcome = ({nameOfStudent}) => {
   return (
     <div key={nameOfStudent.id}>
-     Welcome, {nameOfStudent.nameOfStudent}!
+     Welcome to Hogwarts,  {nameOfStudent.nameOfStudent}!
     </div>
   );
 };
